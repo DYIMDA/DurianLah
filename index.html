@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DurianLah! — Your Ah Ma Approve One</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-yellow: #ffe066;
+      --brand-green: #2d4a37;
+      --brand-brown: #a67c52;
+      --brand-cream: #fffbe6;
+      --brand-pink: #ffb3b3;
+      --text-dark: #2c2c2c;
+      --bg-light: #fffbe6;
+      --card-bg: #fff;
+      --shadow: 0 4px 24px rgba(44,44,44,0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', 'Segoe UI', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
+    a { color: var(--brand-green); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--brand-brown); }
+    img { max-width: 100%; display: block; border-radius: var(--radius); }
+    header {
+      background: linear-gradient(90deg, var(--brand-yellow) 60%, var(--brand-green) 100%);
+      box-shadow: var(--shadow);
+      padding: 0.5rem 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 2rem;
+    }
+    .logo {
+      display: flex; align-items: center; font-family: 'Pacifico', cursive; font-size: 2rem; color: var(--brand-green);
+    }
+    .logo img { height: 48px; margin-right: 0.75rem; border-radius: 12px; box-shadow: 0 2px 8px #e0c36e44; }
+    nav ul { display: flex; gap: 2rem; }
+    nav li { list-style: none; }
+    nav a { font-weight: 700; letter-spacing: 0.5px; font-size: 1.1rem; }
+    nav a.active, nav a:hover { color: var(--brand-brown); border-bottom: 2px solid var(--brand-brown); }
+
+    .hero {
+      background: linear-gradient(120deg, var(--brand-yellow) 60%, var(--brand-pink) 100%);
+      min-height: 60vh; display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .hero-content {
+      max-width: 700px; margin: auto; text-align: center; position: relative; z-index: 1;
+    }
+    .hero-content h1 {
+      font-family: 'Pacifico', cursive; font-size: 3.5rem; color: var(--brand-green); margin-bottom: 1rem; letter-spacing: 1px;
+    }
+    .hero-content p { font-size: 1.3rem; margin-bottom: 2.5rem; color: var(--brand-brown); }
+    .hero-content .btn-primary {
+      background: var(--brand-green); color: #fff; padding: 1rem 2.5rem; border: none; border-radius: 32px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 2px 12px #2d4a3722; transition: background 0.2s;
+    }
+    .hero-content .btn-primary:hover { background: var(--brand-brown); }
+    .hero-img {
+      margin: 2rem auto 0 auto; max-width: 320px; box-shadow: 0 8px 32px #2d4a3722;
+    }
+
+    section { padding: 4rem 1rem; }
+    .container { max-width: 1200px; margin: auto; }
+
+    .features {
+      display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 2rem;
+    }
+    .feature-card {
+      background: var(--card-bg); padding: 2rem 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); flex: 1 1 260px; min-width: 260px; max-width: 340px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 32px #2d4a3722; }
+    .feature-card h3 { color: var(--brand-green); margin-bottom: 0.5rem; font-size: 1.3rem; }
+    .feature-card p { color: var(--brand-brown); }
+
+    .products {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2.5rem; margin-top: 2rem;
+    }
+    .product-card {
+      background: var(--card-bg); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 32px #2d4a3722; }
+    .product-card img { height: 220px; object-fit: cover; border-radius: 0 0 var(--radius) var(--radius); }
+    .product-info { padding: 2rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .product-info h3 { margin-bottom: 0.5rem; color: var(--brand-green); font-size: 1.2rem; }
+    .product-info p { flex: 1; font-size: 1rem; margin-bottom: 1rem; color: var(--brand-brown); }
+    .price { font-weight: bold; margin-bottom: 1rem; color: var(--brand-red); font-size: 1.1rem; }
+    .product-info button { margin-top: auto; background: var(--brand-green); border: none; padding: 0.9rem; border-radius: 32px; font-weight: bold; color: #fff; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+    .product-info button:hover { background: var(--brand-brown); }
+
+    .testimonials {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 2rem; margin-top: 2rem;
+    }
+    .testimonial {
+      background: var(--brand-cream); padding: 2.5rem 2rem; border-radius: var(--radius); box-shadow: var(--shadow); font-style: italic; color: var(--brand-green); position: relative;
+    }
+    .testimonial:before {
+      content: '“'; font-size: 3rem; color: var(--brand-yellow); position: absolute; left: 1.5rem; top: 1rem;
+    }
+    .testimonial-footer { margin-top: 1.5rem; font-weight: bold; text-align: right; color: var(--brand-brown); }
+
+    .loyalty-teaser { text-align: center; background: linear-gradient(90deg, var(--brand-yellow) 60%, var(--brand-pink) 100%); border-radius: var(--radius); box-shadow: var(--shadow); padding: 3rem 1rem; margin-top: 3rem; }
+    .loyalty-teaser h2 { margin-bottom: 1rem; color: var(--brand-green); font-size: 2rem; }
+    .loyalty-teaser p { max-width: 600px; margin: auto; margin-bottom: 2rem; color: var(--brand-brown); }
+    .loyalty-teaser .btn-primary { background: var(--brand-green); color: #fff; border-radius: 32px; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: bold; border: none; transition: background 0.2s; }
+    .loyalty-teaser .btn-primary:hover { background: var(--brand-brown); }
+
+    .contact-section { text-align: center; margin-top: 3rem; }
+    .contact-section h2 { color: var(--brand-green); margin-bottom: 1rem; font-size: 2rem; }
+    .contact-section p { color: var(--brand-brown); font-size: 1.1rem; }
+
+    .footer {
+      background: var(--brand-green); color: #fff; text-align: center; padding: 2.5rem 1rem; border-radius: var(--radius) var(--radius) 0 0; margin-top: 4rem;
+    }
+    .footer p { margin-bottom: 0.5rem; }
+    .socials a { margin: 0 0.7rem; color: #fff; font-weight: bold; font-size: 1.1rem; }
+    .socials a:hover { color: var(--brand-yellow); }
+
+    @media (max-width: 800px) {
+      .nav-container { flex-direction: column; gap: 1rem; padding: 1rem; }
+      .features, .products, .testimonials { grid-template-columns: 1fr !important; flex-direction: column; }
+      .hero-content h1 { font-size: 2.2rem; }
+    }
+    @media (max-width: 500px) {
+      .hero-content h1 { font-size: 1.5rem; }
+      .logo { font-size: 1.2rem; }
+      .product-card img { height: 140px; }
+      .product-info { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="logo.png" alt="DurianLah! Logo">
+        DurianLah!
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#features">Why Us</a></li>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#testimonials">Stories</a></li>
+          <li><a href="#loyalty">Rewards</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Your Ah Ma Approve One</h1>
+      <p>Singapore’s finest durians and treats, delivered fresh with our Confirm-Plus-Chop guarantee. Shop now to taste the legend.</p>
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({ behavior: 'smooth' });">Shop Now</button>
+      <img src="MSW.jpg" alt="Mao Shan Wang" class="hero-img" />
+    </div>
+  </section>
+
+  <section id="features" class="container">
+    <h2 style="text-align:center; color:var(--brand-green); margin-bottom:2rem; font-family:'Pacifico',cursive; font-size:2.2rem;">Why Choose DurianLah?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Premium Quality</h3>
+        <p>Sourced from top plantations in Penang, Pahang, Johor & Segamat.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Freshness Guarantee</h3>
+        <p>Replace if not nice. No questions asked.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Fast Delivery</h3>
+        <p>Chop and deliver within 24 hours across Singapore.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="container">
+    <h2 style="text-align:center; color:var(--brand-green); margin-bottom:2rem; font-family:'Pacifico',cursive; font-size:2.2rem;">Our Bestsellers</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="MSW.jpg" alt="Mao Shan Wang">
+        <div class="product-info">
+          <h3>Mao Shan Wang</h3>
+          <p>Rich, bittersweet flesh that melts in your mouth. Your Ah Ma’s favourite.</p>
+          <div class="price">SGD 25.00</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="cake.webp" alt="Durian Cake">
+        <div class="product-info">
+          <h3>Durian Cake</h3>
+          <p>Fluffy sponge with layers of fresh durian puree and cream.</p>
+          <div class="price">SGD 18.00</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="durianpudding.jpg" alt="Durian Pudding">
+        <div class="product-info">
+          <h3>Durian Pudding</h3>
+          <p>Silky smooth, with a punch of premium durian flavour.</p>
+          <div class="price">SGD 12.00</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="container">
+    <h2 style="text-align:center; color:var(--brand-green); margin-bottom:2rem; font-family:'Pacifico',cursive; font-size:2.2rem;">What Customers Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        Best durian I’ve ever tasted — my Ah Ma can't stop praising it!
+        <div class="testimonial-footer">— Sarah, 32</div>
+      </div>
+      <div class="testimonial">
+        Fast delivery, perfect quality. Confirm plus chop guarantee really works.
+        <div class="testimonial-footer">— Raj, 45</div>
+      </div>
+      <div class="testimonial">
+        The rewards programme is shiok! Free durian cake for referrals.
+        <div class="testimonial-footer">— Mei Ling, 27</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="loyalty" class="container loyalty-teaser">
+    <h2>Durian Royale Rewards</h2>
+    <p>Join our 3-tier loyalty programme: Green Thorn, Golden Husk, Black Gold. Earn points, unlock exclusive perks, and get priority access to rare durians.</p>
+    <button class="btn-primary" onclick="alert('Coming soon!')">Learn More</button>
+  </section>
+
+  <section id="contact" class="container contact-section">
+    <h2>Get in Touch</h2>
+    <p>Questions? Reach us at <a href="mailto:hello@durianlah.sg">hello@durianlah.sg</a> or call <a href="tel:+65-6123-4567">+65 6123 4567</a></p>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 DurianLah! All rights reserved.</p>
+    <div class="socials">
+      <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">TikTok</a>
+    </div>
+  </footer>
+</body>
+</html>
